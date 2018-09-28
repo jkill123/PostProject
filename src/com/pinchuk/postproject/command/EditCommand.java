@@ -5,7 +5,7 @@ import com.pinchuk.postproject.Message;
 public class EditCommand implements  UserCommand {
     private long id;
     private String sender;
-    private String reciever;
+    private String receiver;
     private String address;
     private Message.MessageCategory category;
 
@@ -22,8 +22,8 @@ public class EditCommand implements  UserCommand {
         return sender;
     }
 
-    public String getReciever() {
-        return reciever;
+    public String getReceiver() {
+        return receiver;
     }
 
     public String getAddress() {
@@ -32,5 +32,23 @@ public class EditCommand implements  UserCommand {
 
     public Message.MessageCategory getCategory() {
         return category;
+    }
+
+
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCategory(Message.MessageCategory category) {
+        this.category = category;
     }
 }
