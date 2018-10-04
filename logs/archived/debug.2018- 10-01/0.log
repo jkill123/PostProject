@@ -1,0 +1,10 @@
+2018-10-01 10:40:00- Hello i am logger!
+2018-10-01 10:42:11- Hello i am logger!
+2018-10-01 10:53:00- Hello i am logger!
+2018-10-01 11:11:40- Hello i am logger!
+2018-10-01 19:25:24- Hello i am logger!
+2018-10-01 19:34:59- AddCommand{sender='gdrg', receiver='rgd', address='drgd', category=REGULAR}
+2018-10-01 19:35:01- ListCommand{}
+2018-10-01 19:35:03- SendCommand{}
+2018-10-01 19:35:06- ListCommand{}
+2018-10-01 19:35:07- ExitCommand{}

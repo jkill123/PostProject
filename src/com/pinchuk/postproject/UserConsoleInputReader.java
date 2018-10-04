@@ -4,39 +4,45 @@ import com.pinchuk.postproject.command.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class UserConsoleInputReader {
     private Scanner scanner;
+    private OutputPrinter printer;
 
-    public UserConsoleInputReader() {
+    public UserConsoleInputReader(OutputPrinter printer) {
+        this.printer = printer;
         scanner = new Scanner(System.in);
     }
-    public UserCommand nextComand(){
+    public UserCommand nextCommand(){
         Scanner s= new Scanner(scanner.nextLine());
-        String token = s.next();
-        if (token.equalsIgnoreCase("remove")) {
-            return parseRemove(s);
-        } else if (token.equalsIgnoreCase("edit")) {
-            return parseEdit(s);
-        } else if (token.equalsIgnoreCase("add")) {
-            return parseAdd(s);
-        } else if (token.equalsIgnoreCase("send")){
-            if(!s.hasNext() ) {
-                return new SendCommand();
-            }
-        } else if (token.equalsIgnoreCase("list")){
-            if(!s.hasNext() ) {
-                return new ListCommand();
-            }
-        } else if (token.equalsIgnoreCase("help")){
-            if(!s.hasNext() ) {
-                return new HelpCommand();
-            }
-        } else if (token.equalsIgnoreCase("exit")){
-            if(!s.hasNext() ) {
-                return new ExitCommand();
+        if (s.hasNext()) {
+            String token = s.next();
+            if (token.equalsIgnoreCase("remove")) {
+                return parseRemove(s);
+            } else if (token.equalsIgnoreCase("edit")) {
+                return parseEdit(s);
+            } else if (token.equalsIgnoreCase("add")) {
+                return parseAdd(s);
+            } else if (token.equalsIgnoreCase("send")) {
+                if (!s.hasNext()) {
+                    return new SendCommand();
+                }
+            } else if (token.equalsIgnoreCase("list")) {
+                if (!s.hasNext()) {
+                    return new ListCommand();
+                }
+            } else if (token.equalsIgnoreCase("help")) {
+                if (!s.hasNext()) {
+                    return new HelpCommand();
+                }
+            } else if (token.equalsIgnoreCase("exit")) {
+                if (!s.hasNext()) {
+                    return new ExitCommand();
+                }
             }
         }else {
+            return new EmptyCommand();
         }
         return null;
     }
@@ -45,17 +51,48 @@ public class UserConsoleInputReader {
         if(s.hasNext() ) {
             return null;
         }
-            System.out.println("Plz, enter sender: ");
+            printer.println("Plz, enter sender: ");
+            printer.printUserPromt();
             String sender = scanner.nextLine();
-            System.out.println("Plz enter reciever: ");
-            String reciever = scanner.nextLine();
-            System.out.println("Plz enter address: ");
+            printer.println("Plz enter receiver: ");
+            printer.printUserPromt();
+            String receiver = scanner.nextLine();
+            printer.println("Plz enter address: ");
+            printer.printUserPromt();
             String address = scanner.nextLine();
-            System.out.println("Plz enter category from "+ Arrays.toString(Message.MessageCategory.values()));
+            printer.println("Plz enter category from "+ Arrays.toString(Message.MessageCategory.values()));
+            printer.printUserPromt();
+            Message.MessageCategory cat = readCategory();
+            return new AddCommand(sender, receiver, address, cat);
+    }
+
+    private Message.MessageCategory readCategory() {
+        Message.MessageCategory cat;
+        while (true) {
             String category = scanner.nextLine().trim();
-            Message.MessageCategory cat = parseCategory(category);
-            return new AddCommand(sender, reciever, address, cat);
+            cat = convertToCategory(category);
+           if (cat !=null) {
+               break;
+           }else {
+               printer.println("Plz enter category from "+ Arrays.toString(Message.MessageCategory.values()));
+               printer.printUserPromt();
+           }
         }
+        return cat;
+    }
+
+    private Message.MessageCategory convertToCategory(String category) {
+        switch (category){
+            case "first_class":
+                return Message.MessageCategory.FIRST_CLASS;
+            case "special":
+                return Message.MessageCategory.SPECIAL;
+            case "regular":
+                return Message.MessageCategory.REGULAR;
+            default:
+                return null;
+        }
+    }
 
     private EditCommand parseEdit(Scanner s) {
         if (s.hasNextLong()) {
@@ -77,50 +114,39 @@ public class UserConsoleInputReader {
         return null;
     }
 
-    private Message.MessageCategory parseCategory(String category) {
-        Message.MessageCategory cat;
-        switch (category){
-            case "first_class":
-                cat = Message.MessageCategory.FIRST_CLASS;
-                break;
-            case "special":
-                cat = Message.MessageCategory.SPECIAL;
-                break;
-            case "regular":
-                default:
-                cat = Message.MessageCategory.REGULAR;
-                break;
+    public void readEdit(EditCommand command,String sender, String receiver, String address, Message.MessageCategory category) {
 
-        }
-        return cat;
+        printer.print("Change sender ("+ sender+"): if you want");
+        command.setSender(readOrSkip(sender));
+
+        printer.print("Change receiver ("+ receiver +"): if you want");
+        command.setReceiver(readOrSkip(receiver));
+
+        printer.print("Change address ("+ address+"): if you want");
+        command.setAddress(readOrSkip(address));
+
+        printer.print("Change category ("+ category +"): if you want");
+        command.setCategory(readOrSkip(category, this::convertToCategory, category1 -> category1 != null)); //сылка на метод(лямбда)
+
+    }
+    private String readOrSkip(String previous){
+        return readOrSkip(previous, t -> t, t-> true); // лямбда выражение
     }
 
-    public void readEdit(EditCommand command, Message message) {
-
-        System.out.print("Change sender ("+ message.getSender()+"): if you want");
+    private <T> T readOrSkip(T previous, Function<String, T> convert, Function<T, Boolean> validate){
         String line = scanner.nextLine().trim();
         if(!line.isEmpty()){
-            command.setSender(line);
+            T result = convert.apply(line);
+            if (validate.apply(result)){
+                return result;
+            }else {
+                printer.println("Wrong value , plz repeat");
+                printer.printUserPromt();
+            }
         }
-
-        System.out.print("Change receiver ("+ message.getReceiver()+"): if you want");
-        line = scanner.nextLine().trim();
-        if(!line.isEmpty()){
-            message.setReceiver(line);
-        }
-
-        System.out.print("Change address ("+ message.getAddres()+"): if you want");
-        line = scanner.nextLine().trim();
-        if(!line.isEmpty()) {
-            command.setAddress(line);
-        }
-
-        System.out.print("Change category ("+ message.getCategory()+"): if you want");
-        line = scanner.nextLine().trim();
-        if(!line.isEmpty()) {
-            command.setCategory(parseCategory(line));
-        }
-    }
+        return previous;
+    } // дженерики , конвертация строки пользователя.
+     // принимаю MessageCategory, считываю строку , и если на входе строка то конвертирует
 }
 
 

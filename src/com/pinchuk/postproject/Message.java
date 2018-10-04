@@ -8,15 +8,15 @@ public class Message {
     }
     private MessageCategory category;
     private String sender;
-    private String addres;
+    private String address;
     private String receiver;
     private long id;
     private Date date;
 
-    public Message(MessageCategory category, String sender, String addres, String receiver) {
+    public Message(MessageCategory category, String sender, String address, String receiver) {
         this.category = category;
         this.sender = sender;
-        this.addres = addres;
+        this.address = address;
         this.receiver = receiver;
         this.date = new Date();
     }
@@ -37,12 +37,12 @@ public class Message {
         this.sender = sender;
     }
 
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddres(String address) {
+        this.address = address;
     }
 
     public String getReceiver() {
@@ -70,7 +70,7 @@ public class Message {
         return "Message{" +
                 "category=" + category +
                 ", sender='" + sender + '\'' +
-                ", addres='" + addres + '\'' +
+                ", address='" + address + '\'' +
                 ", receiver='" + receiver + '\'' +
                 ", id=" + id +
                 ", date=" + date +
