@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 public class Main {
     private static final Logger commandLog = LoggerFactory.getLogger("CommandLog");
     public static void main(String[] args) {
-        MessageBox messageBox = new MessageBox();
+        PostBusinessLogic logic = new PostBusinessLogic();
         OutputPrinter printer= new OutputPrinter(System.out);
         UserConsoleInputReader consoleInputReader = new UserConsoleInputReader(printer);
+        printer.println("Plz use following commands");
+        printer.printHelp();
         while (true){
             printer.printUserPromt();
             UserCommand userCommand = consoleInputReader.nextCommand();
@@ -18,21 +20,21 @@ public class Main {
                 printer.println("Unknown command");
             }else {
             commandLog.debug(userCommand.toString());
-            execute(userCommand, messageBox, consoleInputReader, printer);
+            execute(userCommand, logic, consoleInputReader, printer);
             }
         }
     }
 
-    private static void execute(UserCommand userCommand, MessageBox messageBox, UserConsoleInputReader consoleInputReader, OutputPrinter printer) {
+    private static void execute(UserCommand userCommand, PostBusinessLogic logic, UserConsoleInputReader consoleInputReader, OutputPrinter printer) {
         if (userCommand instanceof EditCommand) {
             EditCommand command = (EditCommand) userCommand;
-            Message message = messageBox.search(command.getId());
+            Message message = logic.search(command.getId());
             if (message == null) {
                 printer.println("User unknown!");
             } else {
                 consoleInputReader.readEdit(command, message.getSender(), message.getReceiver(), message.getAddress(), message.getCategory());
             }
         }
-        userCommand.execute(messageBox, printer); // реализация шаблона проектирования "Команда"
+        userCommand.execute(logic, printer); // реализация шаблона проектирования "Команда"
     }
 }

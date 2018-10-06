@@ -1,17 +1,20 @@
 package com.pinchuk.postproject.command;
 
-import com.pinchuk.postproject.MessageBox;
 import com.pinchuk.postproject.OutputPrinter;
+import com.pinchuk.postproject.PostBusinessLogic;
 
 import java.util.List;
 
 public class SendCommand implements UserCommand {
     @Override
-    public void execute(MessageBox messageBox, OutputPrinter printer) {
-        List<Long> longs = messageBox.sendToMianOffice();
-        printer.println("Message were sent " + longs);
+    public void execute(PostBusinessLogic logic, OutputPrinter printer) {
+        List<Long> longs = logic.sendToMainOffice();
+        printer.println();
+        printer.println("Message were sent ");
+        for (Long id : longs) {
+           printer.printAlign("id", id);
+        }
         printer.printSeparator();
-
     }
 
     @Override

@@ -1,17 +1,29 @@
-2018-10-04 18:43:23- ExitCommand{}
-2018-10-04 18:47:26- ExitCommand{}
-2018-10-04 18:49:44- AddCommand{sender='rgdg', receiver='dgdrg', address='drgdrg', category=REGULAR}
-2018-10-04 18:49:46- ListCommand{}
-2018-10-04 18:49:47- SendCommand{}
-2018-10-04 18:49:47- sending to
-2018-10-04 18:49:49- ExitCommand{}
-2018-10-04 18:56:03- Create message box with intial size = 100
-2018-10-04 18:56:12- ExitCommand{}
-2018-10-04 19:04:19- Create message box with initial size = 100
-2018-10-04 19:04:35- AddCommand{sender='sgrdg', receiver='drgdg', address='drgd', category=REGULAR}
-2018-10-04 19:04:35- category = REGULAR, fromsgrdg, todrgdg(drgd)
-2018-10-04 19:04:41- ListCommand{}
-2018-10-04 19:04:54- SendCommand{}
-2018-10-04 19:04:54- Send message to main office.
-2018-10-04 19:04:54- sending to main officeMessage{category=REGULAR, sender='sgrdg', address='drgd', receiver='drgdg', id=0, date=Thu Oct 04 19:04:35 EEST 2018}
-2018-10-04 19:04:56- ExitCommand{}
+2018-10-06 15:49:45- Create message box with initial size = 100
+2018-10-06 15:50:10- Create message box with initial size = 100
+2018-10-06 15:50:18- AddCommand{sender='srgsdrg', receiver='drgdrg', address='drgdg', category=REGULAR}
+2018-10-06 15:50:18- category = REGULAR, fromsrgsdrg, todrgdrg(drgdg)
+2018-10-06 15:50:24- AddCommand{sender='drgdrg', receiver='drgdrg', address='drgdrg', category=SPECIAL}
+2018-10-06 15:50:24- category = SPECIAL, fromdrgdrg, todrgdrg(drgdrg)
+2018-10-06 15:50:25- ListCommand{}
+2018-10-06 15:50:28- SendCommand{}
+2018-10-06 15:50:28- Send message to main office.
+2018-10-06 15:50:28- sending to main officeMessage{category=REGULAR, sender='mama', address='dom', receiver='papa', id=0, date=Fri Oct 05 19:55:26 EEST 2018}
+2018-10-06 15:50:28- sending to main officeMessage{category=SPECIAL, sender='papa', address='dom2', receiver='mama', id=1, date=Fri Oct 05 19:55:38 EEST 2018}
+2018-10-06 15:50:28- sending to main officeMessage{category=REGULAR, sender='srgsdrg', address='drgdg', receiver='drgdrg', id=2, date=Sat Oct 06 15:50:18 EEST 2018}
+2018-10-06 15:50:28- sending to main officeMessage{category=SPECIAL, sender='drgdrg', address='drgdrg', receiver='drgdrg', id=3, date=Sat Oct 06 15:50:24 EEST 2018}
+2018-10-06 15:50:31- ListCommand{}
+2018-10-06 15:50:35- ExitCommand{}
+2018-10-06 16:07:54- Create message box with initial size = 100
+2018-10-06 16:08:04- ListCommand{}
+2018-10-06 16:08:11- AddCommand{sender='rsgdrg', receiver='drgdrg', address='drgdrg', category=REGULAR}
+2018-10-06 16:08:11- category = REGULAR, fromrsgdrg, todrgdrg(drgdrg)
+2018-10-06 16:08:12- ListCommand{}
+2018-10-06 16:08:52- Create message box with initial size = 100
+2018-10-06 16:08:54- ListCommand{}
+2018-10-06 16:09:18- ExitCommand{}
+2018-10-06 16:09:29- Create message box with initial size = 100
+2018-10-06 16:09:31- ListCommand{}
+2018-10-06 16:09:38- AddCommand{sender='segsrg', receiver='sgsrg', address='dsrgrg', category=REGULAR}
+2018-10-06 16:09:38- category = REGULAR, fromsegsrg, tosgsrg(dsrgrg)
+2018-10-06 16:09:39- ListCommand{}
+2018-10-06 16:09:44- ExitCommand{}

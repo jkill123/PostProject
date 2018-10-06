@@ -1,20 +1,13 @@
 package com.pinchuk.postproject.command;
 
-import com.pinchuk.postproject.MessageBox;
 import com.pinchuk.postproject.OutputPrinter;
+import com.pinchuk.postproject.PostBusinessLogic;
 
 public class HelpCommand implements UserCommand{
     @Override
-    public void execute(MessageBox messageBox, OutputPrinter printer) {
+    public void execute(PostBusinessLogic logic, OutputPrinter printer) {
         printer.println("You can use following commands");
-        printer.println("add");
-        printer.println("send");
-        printer.println("list");
-        printer.println("edit <id>");
-        printer.println("remove <id>");
-        printer.println("help");
-        printer.println("exit");
-        printer.printSeparator();
+        printer.printHelp();
     }
 
     @Override

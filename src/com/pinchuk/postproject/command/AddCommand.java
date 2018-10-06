@@ -1,8 +1,8 @@
 package com.pinchuk.postproject.command;
 
 import com.pinchuk.postproject.Message;
-import com.pinchuk.postproject.MessageBox;
 import com.pinchuk.postproject.OutputPrinter;
+import com.pinchuk.postproject.PostBusinessLogic;
 
 public class AddCommand implements UserCommand{
     private String sender;
@@ -18,9 +18,11 @@ public class AddCommand implements UserCommand{
     }
 
     @Override
-    public void execute(MessageBox messageBox, OutputPrinter printer) {
-        long id = messageBox.add(category, sender, address, receiver);
-        printer.println("Added message: id = "+ id);
+    public void execute(PostBusinessLogic logic, OutputPrinter printer) {
+        long id = logic.add(category, sender, address, receiver);
+        printer.println();
+        printer.println("Added message: ");
+        printer.print(logic.search(id));
         printer.printSeparator();
     }
 

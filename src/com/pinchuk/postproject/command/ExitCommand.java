@@ -1,11 +1,11 @@
 package com.pinchuk.postproject.command;
 
-import com.pinchuk.postproject.MessageBox;
 import com.pinchuk.postproject.OutputPrinter;
+import com.pinchuk.postproject.PostBusinessLogic;
 
 public class ExitCommand implements UserCommand{
     @Override
-    public void execute(MessageBox messageBox, OutputPrinter printer) {
+    public void execute(PostBusinessLogic logic, OutputPrinter printer) {
         printer.println("Exiting....");
         System.exit(0);
     }

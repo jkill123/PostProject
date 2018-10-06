@@ -3,7 +3,9 @@ package com.pinchuk.postproject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class MessageBox {
     private static final Logger log = LoggerFactory.getLogger(MessageBox.class);
@@ -12,16 +14,23 @@ public class MessageBox {
     private static long nextIndex =0;
 
 
-
     public MessageBox() {
         this(100);
-    }
-
+    }// размер бокса
 
     public MessageBox(int count) {
+        this(count, new ArrayList<>());
+    }//общий конструктор
+
+    public MessageBox(int count, List<Message> messages) {
         log.debug("Create message box with initial size = " + count);
-        messages = new ArrayList<>(count);
+        this.messages = new ArrayList<>(count);
         mainoffice = new MainOffice();
+        this.messages.addAll(messages);
+
+        for (Message existingMessage : messages) {
+            nextIndex= Math.max(nextIndex, existingMessage.getId()+1);
+        }
     }
 
 
@@ -68,10 +77,7 @@ public class MessageBox {
                 iterator.remove();
             }
         }
-
-
         return ids;
-
     }
 
     public List<Message> list(){
@@ -83,5 +89,15 @@ public class MessageBox {
         return "MessageBox{" +
                 "messages=" + messages +
                 '}';
+    }
+    public void update(long id, Message.MessageCategory category, String sender, String receiver, String address) {
+        Message message = search(id);
+        if (message == null){
+            return;
+        }
+        message.setCategory(category);
+        message.setSender(sender);
+        message.setReceiver(receiver);
+        message.setAddres(address);
     }
 }

@@ -1,0 +1,29 @@
+2018-10-05 19:32:07- Create message box with initial size = 100
+2018-10-05 19:32:17- AddCommand{sender='segfse', receiver='sgseg', address='segsg', category=REGULAR}
+2018-10-05 19:32:17- category = REGULAR, fromsegfse, tosgseg(segsg)
+2018-10-05 19:32:19- ListCommand{}
+2018-10-05 19:32:22- ExitCommand{}
+2018-10-05 19:35:53- Create message box with initial size = 100
+2018-10-05 19:36:05- AddCommand{sender='segsg', receiver='sgsg', address='sgsg', category=REGULAR}
+2018-10-05 19:36:05- category = REGULAR, fromsegsg, tosgsg(sgsg)
+2018-10-05 19:36:07- ExitCommand{}
+2018-10-05 19:52:41- Create message box with initial size = 100
+2018-10-05 19:52:49- ListCommand{}
+2018-10-05 19:53:40- AddCommand{sender='drgr', receiver='drgrdg', address='drgdrg', category=REGULAR}
+2018-10-05 19:53:40- category = REGULAR, fromdrgr, todrgrdg(drgdrg)
+2018-10-05 19:53:42- ListCommand{}
+2018-10-05 19:54:30- ExitCommand{}
+2018-10-05 19:54:34- Create message box with initial size = 100
+2018-10-05 19:54:37- ListCommand{}
+2018-10-05 19:54:47- ListCommand{}
+2018-10-05 19:55:14- Create message box with initial size = 100
+2018-10-05 19:55:26- AddCommand{sender='mama', receiver='papa', address='dom', category=REGULAR}
+2018-10-05 19:55:26- category = REGULAR, frommama, topapa(dom)
+2018-10-05 19:55:38- AddCommand{sender='papa', receiver='mama', address='dom2', category=SPECIAL}
+2018-10-05 19:55:38- category = SPECIAL, frompapa, tomama(dom2)
+2018-10-05 19:55:41- ListCommand{}
+2018-10-05 19:55:43- ExitCommand{}
+2018-10-05 19:55:46- Create message box with initial size = 100
+2018-10-05 19:55:48- ListCommand{}
+2018-10-05 19:56:47- Create message box with initial size = 100
+2018-10-05 19:56:51- ListCommand{}

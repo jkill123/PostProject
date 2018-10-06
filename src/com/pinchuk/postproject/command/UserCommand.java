@@ -1,8 +1,8 @@
 package com.pinchuk.postproject.command;
 
-import com.pinchuk.postproject.MessageBox;
 import com.pinchuk.postproject.OutputPrinter;
+import com.pinchuk.postproject.PostBusinessLogic;
 
 public interface UserCommand {
-    void execute(MessageBox messageBox, OutputPrinter printer);
+    void execute(PostBusinessLogic logic, OutputPrinter printer);
 }

@@ -1,7 +1,7 @@
 package com.pinchuk.postproject.command;
 
-import com.pinchuk.postproject.MessageBox;
 import com.pinchuk.postproject.OutputPrinter;
+import com.pinchuk.postproject.PostBusinessLogic;
 
 public class RemoveCommand  implements UserCommand {
     private long id;
@@ -11,8 +11,9 @@ public class RemoveCommand  implements UserCommand {
     }
 
     @Override
-    public void execute(MessageBox messageBox, OutputPrinter printer) {
-        boolean delete = messageBox.delete(id);
+    public void execute(PostBusinessLogic logic, OutputPrinter printer) {
+        boolean delete = logic.delete(id);
+        printer.println();
         if (delete){
             printer.println("Message"+id+ "was successfully removed");
         }else {

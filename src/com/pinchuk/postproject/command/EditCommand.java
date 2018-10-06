@@ -1,8 +1,8 @@
 package com.pinchuk.postproject.command;
 
 import com.pinchuk.postproject.Message;
-import com.pinchuk.postproject.MessageBox;
 import com.pinchuk.postproject.OutputPrinter;
+import com.pinchuk.postproject.PostBusinessLogic;
 
 public class EditCommand implements  UserCommand {
     private long id;
@@ -36,17 +36,16 @@ public class EditCommand implements  UserCommand {
     }
 
     @Override
-    public void execute(MessageBox messageBox, OutputPrinter printer) {
-        Message message = messageBox.search(id);
+    public void execute(PostBusinessLogic logic, OutputPrinter printer) {
+        logic.update(id, category, sender,receiver,address);
+        Message message = logic.search(id);
         if (message == null){
             printer.println("Couldn't find message "+ id);
             return;
         }
-        message.setCategory(category);
-        message.setSender(sender);
-        message.setReceiver(receiver);
-        message.setAddres(address);
-        printer.println("Message updated: "+ message);
+        printer.println();
+        printer.println("Message updated: ");
+        printer.print(message);
         printer.printSeparator();
     }
 
